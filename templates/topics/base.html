@@ -1,0 +1,175 @@
+{% load static %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Learning Log</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="{% static 'topics/css/animate.css'%}">
+	
+	<link rel="stylesheet" href="{% static 'topics/css/owl.carousel.min.css'%}">
+	<link rel="stylesheet" href="{% static 'topics/css/owl.theme.default.min.css'%}">
+	<link rel="stylesheet" href="{% static 'topics/css/magnific-popup.css'%}">
+
+	
+	<link rel="stylesheet" href="{% static 'topics/css/flaticon.css'%}">
+	<link rel="stylesheet" href="{% static 'topics/css/style.css'%}">
+	<!--{% bootstrap_css %}
+	{% bootstrap_javascript jquery='full' %}-->
+</head>
+<body>
+	{% block container %}
+	<div id="colorlib-page">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
+
+			<h1 id="colorlib-logo" class="mb-4 mb-md-5"><a href="{% url 'home' %}" style="background-image: url({% static 'topics/images/bg_1.jpg'%})">Learning Log</a></h1>
+			<nav id="colorlib-main-menu" role="navigation">
+				<ul>
+					<li class="colorlib-active"><a href="{% url 'home' %}">Home</a></li>
+					<li><a href="{% url 'topic' %}">Topics</a></li>
+					{% if user.is_authenticated %}
+					<li><a href="{% url 'new_topic' %}">Add Topic</a></li>
+					{% endif %}
+
+					{% if user.is_authenticated %}
+					<li><a href="{% url 'accounts:profile' %}">Profile </a> <a href="{% url 'accounts:profile' %}"><img class="" src="{{user.userprofile.image.url}}" alt="Pic" width="40" height="40" style="border-radius: 40px;"></a></li>
+					{% endif %}
+					
+					{% if user.is_authenticated %}
+					<li><a href="{% url 'accounts:logOut' %}">Log Out</a></li>
+					{% endif %}
+				</ul>
+			</nav>
+
+			<div class="colorlib-footer">
+				<div class="mb-4">
+					<h3>Subscribe for newsletter</h3>
+					<form action="{% url 'subscribe' %}" method="POST" class="colorlib-subscribe-form">
+						{% csrf_token %}
+						<div class="form-group d-flex">
+							<div class="icon"><span class="icon-paper-plane"></span></div>
+							<input type="email" name="email" class="form-control" placeholder="Enter Email Address" required>
+						</div>
+						<div class="form-group">
+						 <button type="submit" class="btn btn-primary mt-4">SUBSCRIBE</button>
+						</div>
+					</form>
+				</div>
+				<p class="pfooter">
+					Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://www.blogger.com/profile/00229954688257087447" target="_blank">Ovaixe</a>
+				</p>
+				</div>
+			</aside> <!-- END COLORLIB-ASIDE -->
+			<div id="colorlib-main">
+				<section class="ftco-section ftco-no-pt ftco-no-pb">
+					<div class="container px-md-0">
+                        <!-- Start Main Block -->
+                        {% block main %}
+						<div class="d-flex no-gutters">
+                            <div class="portfolio-wrap">
+								<div class="row align-items-center">
+                                    <!-- Start Image Block -->
+									{% block image %}
+									<div class="col-md-6">
+										
+										<img src="{% static 'topics/images/learning.jpg' %}" class="img-img-fluid">
+										
+									</div>
+									{% endblock image %}
+                                    <!-- End Image Block -->
+
+                                    <!-- Start Text Block -->
+                                    {% block text %}
+                                    <div class="col-md-6">
+										<div class="text pt-5 px-0">
+											<div class="px-5 px-lg-5">
+												<div class="desc">
+													<div class="top">
+														{% if user.is_authenticated %}
+															{% block welcome %}
+															<span class="subheading">Welcome</span>
+															<h2 class="mb-4"><a href="" style='color: #F3C623;'>{{user.first_name}} {{user.last_name}}</a></h2>
+															{% endblock welcome %}
+								
+														{% endif %}
+															{% block title-content %}
+															<h2 class="mb-4"><a href="gallery.html">Black &amp; Gold Paint Face</a></h2>
+															{% endblock title-content %}
+													
+													</div>
+													<div class="absolute">
+                                                    {% block content %}
+                                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
+                                                    {% endblock content %}		
+													</div>
+													{% if user.is_authenticated %}
+														{% for message in messages %}
+															<div class='alert alert-success alert-dismissible fade show' role='alert'>
+															{{message}}
+															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    															<span aria-hidden="true">&times;</span></button>
+															</div>
+														{% endfor %}
+													{% else %}
+														{% block button %}
+														<p><a href="single.html" class="custom-btn">View Portfolio</a></p>
+														{% endblock button %}
+													{% endif %}
+													{% block admin-btn %}
+													{% if user.is_staff %}
+													<p><a href="admin/" class="custom-btn">Go To Admin Panel</a></p>
+													{% endif %}
+													{% endblock admin-btn %}
+													
+												</div>
+											</div>
+										</div>
+									</div>
+                                    {% endblock text %}
+									<!-- End Text Block -->
+								</div>
+							</div>
+						</div>
+                        {% endblock main %}
+						<!-- End Main Block -->
+                        {% block load %}
+                        <div class="row d-flex">
+							<div class="col-md-12">
+								<a href="#" class="btn-custom-load d-block w-100 text-center py-4">Load more <span class="fa fa-refresh"></span></a>
+							</div>
+						</div>
+                        {% endblock load %}
+						
+					</div>
+				</section>
+			</div><!-- END COLORLIB-MAIN -->
+	</div><!-- END COLORLIB-PAGE -->
+	{% endblock container %}
+		<!-- loader -->
+		<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+		<script src="{% static 'topics/js/jquery.min.js'%}"></script>
+		<script src="{% static 'topics/js/jquery-migrate-3.0.1.min.js'%}"></script>
+		<script src="{% static 'topics/js/popper.min.js'%}"></script>
+		<script src="{% static 'topics/js/bootstrap.min.js'%}"></script>
+		<script src="{% static 'topics/js/jquery.easing.1.3.js'%}"></script>
+		<script src="{% static 'topics/js/jquery.waypoints.min.js'%}"></script>
+		<script src="{% static 'topics/js/jquery.stellar.min.js'%}"></script>
+		<script src="{% static 'topics/js/owl.carousel.min.js'%}"></script>
+		<script src="{% static 'topics/js/jquery.magnific-popup.min.js'%}"></script>
+		<script src="{% static 'topics/js/jquery.animateNumber.min.js'%}"></script>
+		<script src="{% static 'topics/js/scrollax.min.js'%}"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+		<script src="{% static 'topics/js/google-map.js'%}"></script>
+		<script src="{% static 'topics/js/main.js'%}"></script>
+		
+	</body>
+	</html>

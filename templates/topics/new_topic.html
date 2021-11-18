@@ -1,0 +1,56 @@
+{% extends 'topics/base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block main %}
+    <div class="row d-flex no-gutters">
+		<div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+			<div class="contact-wrap w-100 p-md-5 p-4">
+				<h3 class="mb-4 heading">Add New <span style='color: #F3C623;'>Topic</span></h3>
+				<form action="{% url 'new_topic' %}" method='post' enctype="multipart/form-data" class='mt-5 mb-5'>
+					{% csrf_token %}
+						{% bootstrap_form form %}
+						<div class="col-md-12 mt-5 pt-5">
+							<div class="form-group">
+								<input type="submit" value="Add Topic" class="btn btn-primary">
+							</div>
+						</div>
+        		</form>
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-5 d-flex align-items-stretch">
+			<div class="info-wrap js-fullheight bg-primary w-100 p-md-5 p-4">
+				<h3>Let's get in touch</h3>
+				<p class="mb-4">We're open for any suggestion or just to have a chat</p>
+				<div class="dbox w-100 d-flex align-items-center">
+										<div class="icon d-flex align-items-center justify-content-center">
+											<span class="fa fa-phone"></span>
+										</div>
+										<div class="text pl-3">
+											<p><span>Phone:</span> <a href="tel://6005352951">+91 6005352951</a></p>
+										</div>
+									</div>
+									<div class="dbox w-100 d-flex align-items-center">
+										<div class="icon d-flex align-items-center justify-content-center">
+											<span class="fa fa-paper-plane"></span>
+										</div>
+										<div class="text pl-3">
+											<p><span>Email:</span> <a href="mailto:info@yoursite.com">owaisbhat996@gmail.com</a></p>
+										</div>
+									</div>
+									<div class="dbox w-100 d-flex align-items-center">
+										<div class="icon d-flex align-items-center justify-content-center">
+											<span class="fa fa-globe"></span>
+										</div>
+										<div class="text pl-3">
+											<p><span>Website</span> <a href="https://tmadsweb.blogspot.com">tmadsweb.blogspot.com</a></p>
+										</div>
+									</div>
+			</div>
+		</div>
+	</div>
+{% endblock main %}
+
+{% block load %}
+
+{% endblock load %}

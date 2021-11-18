@@ -1,0 +1,52 @@
+{% extends 'topics/base.html' %}
+
+{% load static %}
+
+
+
+{% block image %}
+    <a href="{{topic.image.url}}" class="col-md-6 img image-popup js-fullheight d-flex align-items-center justify-content-center" style="background-image: url({{topic.image.url}});">
+		<div class="icon d-flex align-items-center justify-content-center">
+			<span class="fa fa-expand"></span>
+		</div>
+	</a>
+{% endblock image %}
+
+
+{% block welcome %}
+{% endblock welcome %}
+
+{% block title-content %}
+<span class="subheading"><h1 style="color: #F3C623;">{{topic.title}}</h1></span>
+{% endblock title-content %}
+
+{% block content %}
+<ul>
+{% for entry in entries %}
+<h5>{{ entry.date_added|date:'M d, Y. h:i' }}</h5>
+<li><p>{{entry.text}}</p></li>
+<div class="d-flex justify-content-between">
+<p><a href="{% url 'edit_entry' entry.id %}" class="btn-custom">Edit Entry</a></p>
+<p><a href="{% url 'delete_entry' entry.id %}" class="btn-custom">Delete Entry</a></p>
+</div>
+{% empty %}
+<h6>There are no entries for this topic yet.</h6>
+{% endfor %}
+</ul>
+{% endblock content %}
+
+{% block button %}
+
+{% endblock button %}
+
+{% block admin-btn %}
+
+{% endblock admin-btn %}
+
+{% block load %}
+    <div class="row d-flex">
+		<div class="col-md-12">
+			<a href="{% url 'addEntry' topic.id %}" class="btn-custom-load d-block w-100 text-center py-4">Add Entry <span class="fa fa-refresh"></span></a>
+		</div>
+	</div>
+{% endblock load %}

@@ -1,0 +1,55 @@
+{% extends 'topics/base.html' %}
+
+{% load static %}
+
+{% block main %}
+    <section class="ftco-about img ftco-section ftco-no-pt ftco-no-pb" id="about-section">
+					<div class="container-fluid px-0">
+						<div class="row d-flex">
+							<div class="col-md-6 d-flex">
+								<div class="img d-flex align-self-stretch align-items-center js-fullheight" style="background-image:url({{user.userprofile.image.url}});">
+								</div>
+							</div>
+							<div class="col-md-6 d-flex align-items-center">
+								<div class="text px-4 pt-5 pt-md-0 px-md-4 pr-md-5 ftco-animate">
+									<h2 class="mb-4">Hello! I'm <span>{{user.first_name}} {{user.last_name}}</span></h2>
+									<p>{{user.userprofile.bio}}</p>
+
+									<div class="col-md-12 pricing">
+										<div class="row no-gutters align-items-center">
+											
+											<div class="text p-4 ftco-animate">
+												<h3 style='color: #F2C523;'>{{user.username}}
+												{% if user.is_staff %}
+												<span class="badge badge-primary">Admin</span>
+												{% endif %}
+												</h3>
+												<ul>
+													<li><span style='color: #F2C523;'>First Name</span>{{user.first_name}}</li>
+													<li><span style='color: #F2C523;'>Last Name</span>{{user.last_name}}</li>
+													<li><span style='color: #F2C523;'>Email Id</span>{{user.email}}</li>
+													<li><span style='color: #F2C523;'>Topics</span>{{topics}}</li>
+													<li><span style='color: #F2C523;'>Term</span>14 Days</li>
+												</ul>
+												<span class="price">$50</span>
+												
+											</div>
+											
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+{% endblock main %}
+
+
+{% block load %}
+    <div class="row d-flex">
+		<div class="col-md-12">
+			<a href="{% url 'accounts:edit_profile' %}" class="btn-custom-load d-block w-100 text-center py-4">Edit Your Porfile <span class="fa fa-refresh"></span></a>
+		</div>
+	</div>
+{% endblock load %}

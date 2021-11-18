@@ -1,0 +1,62 @@
+{% extends 'topics/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block main %}
+{% for topic in topics %}
+<div class="row d-flex no-gutters">
+                            <div class="col-md-12 portfolio-wrap">
+								<div class="row no-gutters align-items-center">
+                                    <!-- Start Image Block -->
+                                    {% block image %}
+                                    <a href="{{topic.image.url}}" class="col-md-6 img image-popup js-fullheight d-flex align-items-center justify-content-center" style="background-image: url({{topic.image.url}});">
+										<div class="icon d-flex align-items-center justify-content-center">
+											<span class="fa fa-expand"></span>
+										</div>
+									</a>
+                                    {% endblock image %}
+                                    <!-- End Image Block -->
+
+                                    <!-- Start Text Block -->
+                                    {% block text %}
+                                    <div class="col-md-6">
+										<div class="text pt-5 pl-0 px-lg-5 pl-md-4 ftco-animate">
+											<div class="px-4 px-lg-4">
+												<div class="desc">
+													<div class="top">
+                                                        {% block title-content %}
+                                                        <span class="subheading" style="color: #F3C623;">{{topic.title}}</span>
+                                                        {% endblock title-content %}
+													</div>
+													<div class="absolute">
+                                                    {% block content %}
+                                                    
+                                                    {% endblock content %}		
+													</div>
+													<div class="d-flex justify-content-between">
+													<p><a href="{% url 'entry' topic.id %}" class="custom-btn">View Topic</a></p>
+													<p><a href="{% url 'delete_topic' topic.id %}" class="custom-btn">Delete Topic</a></p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+                                    {% endblock text %}
+									<!-- End Text Block -->
+								</div>
+							</div>
+						</div>
+{% empty %}
+<div class="jumbotron mt-5 pt-5 bg-warning text-center">
+<h1>There are no Topics to Show</h1>
+</div>
+{% endfor %}
+{% endblock main %}
+
+{% block load %}
+	<div class="row d-flex">
+		<div class="col-md-12">
+			<a href="{% url 'new_topic' %}" class="btn-custom-load d-block w-100 text-center py-4">Add New Topic <span class="fa fa-refresh"></span></a>
+		</div>
+	</div>
+{% endblock load %}

@@ -1,0 +1,21 @@
+{% extends 'topics/base.html' %}
+
+
+{% block title-content %}
+<h2 class="mb-4">Keeping  a  Learning Log</h2>
+{% endblock title-content %}
+
+{% block content %}
+<p>A Learning Log contains your record of your experiences, thoughts, feelings and reflections. One of the most important things it contains is your conclusions about how what you have learnt is relevant to you and how you will use the new information / knowledge / skill / technique in the future.</p>
+{% endblock content %}
+
+
+{% block button %}
+<p><a href="{% url 'accounts:logIn' %}" class="custom-btn">Log In</a></p>
+<p><a href="{% url 'accounts:signUp' %}" class="custom-btn">Sign Up</a></p>
+{% endblock button %}
+
+{% block load %}
+
+{% endblock load %}
+

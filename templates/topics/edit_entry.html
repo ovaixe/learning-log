@@ -1,0 +1,57 @@
+{% extends 'topics/base.html' %}
+{% load bootstrap4 %}
+
+{% block main %}
+<div class="row d-flex no-gutters">
+		<div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+			<div class="contact-wrap w-100 p-md-5 p-4">
+				<h3 class="mb-4 heading">Edit Entry For <span style="color: #F3C623;">{{topic}}</span></h3>
+				<form method="POST" action="{% url 'edit_entry' entry.id %}" id="contactForm" name="contactForm" class="contactForm">
+                    {% csrf_token %}
+						{% bootstrap_form form %}
+						<div class="col-md-12mt-5 pt-5">
+							<div class="form-group">
+								<input type="submit" value="Edit Entry" class="btn btn-primary">
+							</div>
+						</div>
+				</form>
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-5 d-flex align-items-stretch">
+			<div class="info-wrap js-fullheight bg-primary w-100 p-md-5 p-4">
+				<h3>Let's get in touch</h3>
+				<p class="mb-4">We're open for any suggestion or just to have a chat</p>
+				<div class="dbox w-100 d-flex align-items-center">
+										<div class="icon d-flex align-items-center justify-content-center">
+											<span class="fa fa-phone"></span>
+										</div>
+										<div class="text pl-3">
+											<p><span>Phone:</span> <a href="tel://6005352951">+91 6005352951</a></p>
+										</div>
+									</div>
+									<div class="dbox w-100 d-flex align-items-center">
+										<div class="icon d-flex align-items-center justify-content-center">
+											<span class="fa fa-paper-plane"></span>
+										</div>
+										<div class="text pl-3">
+											<p><span>Email:</span> <a href="mailto:info@yoursite.com">owaisbhat996@gmail.com</a></p>
+										</div>
+									</div>
+									<div class="dbox w-100 d-flex align-items-center">
+										<div class="icon d-flex align-items-center justify-content-center">
+											<span class="fa fa-globe"></span>
+										</div>
+										<div class="text pl-3">
+											<p><span>Website</span> <a href="https://tmadsweb.blogspot.com">tmadsweb.blogspot.com</a></p>
+										</div>
+									</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock main %}
+
+
+{% block load %}
+
+{% endblock load %}
